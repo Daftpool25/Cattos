@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
+
+$sans:'Josefin Sans', sans-serif;
+$logo:'Quicksand', sans-serif;
+
+@mixin light($size){
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: $size;
+}
+@mixin regular($size){
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: $size;
+}
+@mixin bold($size){
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    font-size: $size;
+}
+@mixin logo($size){
+    font-family: $logo;
+    font-weight: 600;
+    font-size: $size;
+}
+
+//!Levels
+
+.worker{
+    color:rgb(194, 34, 34)
+}
+
+.junior{
+    color:rgb(209, 189, 8)
+}
+
+.admin{
+    color:rgb(18, 150, 40)
+}

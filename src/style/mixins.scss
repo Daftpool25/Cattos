@@ -1,0 +1,61 @@
+@import "./colors.scss";
+@import "./fonts.scss";
+
+@mixin containerFullHeight{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:100%
+}
+
+@mixin regularContainer ($direc, $justify, $align){
+    display: flex;
+    flex-direction: $direc;
+    justify-content:$justify;
+    align-items:$align
+}
+
+@mixin input(){
+    padding: 1em;
+    outline: none;
+    border:none;
+    border-radius: 7px;
+    background-color: $light;
+    color: $textColor;
+    @include light(1em)
+}
+@mixin inputWhite{
+    padding: 1em;
+    outline: none;
+    border:none;
+    border-radius: 7px;
+    background-color: $light2;
+    color: $textColor;
+    @include light(1em)
+}
+
+@mixin btn(){
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background-color: $secondary;
+    @include light (1.5em);
+    &:hover{
+        opacity: 0.7;
+    }
+}
+
+@mixin btnModel($text, $bg){
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 6px;
+    color: $text;
+    background-color: $bg;
+    @include regular (1.7em);
+    &:hover{
+        opacity: 0.7;
+    }
+}
