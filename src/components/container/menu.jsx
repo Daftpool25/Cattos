@@ -4,13 +4,17 @@ import table from "../../images/table.svg"
 import linkedin from "../../images/linkedin.svg"
 import git from "../../images/github.svg"
 import arrow from "../../images/arrow.svg"
+import { useNavigate } from 'react-router-dom';
 
 
 function Menu() {
+
+  const navigate=useNavigate()
+
   return (
     <div id="sideBarContainer">
         <div className="iconsContainerBar">
-            <img width="48px" src={dashboard} alt="dashboardMenuIcon" />
+            <img onClick={() => navigate("/")} width="48px" src={dashboard} alt="dashboardMenuIcon" />
             <img width="48px" src={table} alt="tableMenuIcon" />
             <img width="48px" src={git} alt="gitMenuIcon" />
             <img width="48px" src={linkedin} alt="linkMenuIcon" />

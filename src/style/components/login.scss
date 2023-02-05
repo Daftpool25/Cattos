@@ -1,0 +1,90 @@
+@import "../colors.scss";
+@import "../mixins.scss";
+@import "../fonts.scss";
+
+//!LOGIN
+.login{
+    @include regularContainer (row, center, center);
+    height: 100vh;
+        background-image: url("../../images/loginBackground.png");
+        background-repeat: none;
+        background-position: right;
+        background-size: cover;
+    .loginContainer{
+        width:50%;
+        height: 100vh;
+        text-align: center;
+        @include regularContainer (column, center, center);
+
+        .divLogin{
+            border-radius: 1em;
+            border: 5px solid $primary;
+            padding: 1em;
+            margin:2em;
+            width:40%;
+            height:40%;
+            &:hover{
+                transform: scale(1.2);
+                transition-duration: 1s;
+            }
+            form{
+                width: 100%;
+                height:100%;
+                @include regularContainer (column, center, center);
+                gap: 0.5em;
+                input{
+                    @include input;
+
+                }
+                button{
+                    @include btn;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                p{
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .divRegister{
+            border-radius: 1em;
+            border: 5px solid $primary;
+            padding: 1em;
+            margin:2em;
+            width:40%;
+            height:auto;
+            &:hover{
+                transform: scale(1.2);
+                transition-duration: 1s;
+            }
+            form{
+                width: 100%;
+                height:100%;
+                @include regularContainer (column, center, center);
+                gap: 0.5em;
+                input{
+                    @include input;
+
+                }
+                button{
+                    @include btn;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                p{
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    .imagenContainer{
+        width: 50%;
+        height: 100vh;
+    }
+}

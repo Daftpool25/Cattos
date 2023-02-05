@@ -1,0 +1,55 @@
+@import "../colors.scss";
+@import "../mixins.scss";
+@import "../fonts.scss";
+
+.profileContainer{
+    margin:2em;
+    border-radius: 1em;
+    background-color: white;
+    padding: 3em 2em;
+    @include regularContainer (column, center, center);
+}
+
+//!INPUTS
+.inputsList{
+    @include regularContainer (row, space-around, center);
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+    row-gap: 1em;
+
+    h1{
+        margin-top: 1.5em;
+        width: 100%;
+        text-align: center;
+    }
+
+    .labelXinput{
+        width: 40%;
+        display:flex;
+        flex-direction: column;
+        
+        label{
+            margin-bottom: 0.5em;
+            color:$textColor;
+            @include regular (1.5em)
+        }
+        input{
+            @include inputWhite;
+        }
+    }
+}
+
+//!BUTTONS
+
+.dismissButton{
+    @include btnModel(white, $textColor);
+
+}
+.successButton{
+    @include btnModel(white, $primary);
+}
+
+.btnProfileContainer{
+    @include regularContainer (row, space-around, center);
+    width: 100%;
+}

@@ -4,6 +4,7 @@ import remove from "../../images/delete.svg"
 import add from "../../images/add.svg"
 import search from "../../images/search.svg"
 import arrows from "../../images/arrows.svg"
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -84,7 +85,7 @@ function MainTable({data}) {
         }
     }
 
-
+    const navigate = useNavigate()
 
   return (
     <div className="divMainTable">
@@ -94,7 +95,7 @@ function MainTable({data}) {
                 <input value={searchValue} onChange={e => setSearchValue(e.target.value)} type="text" placeholder='Write a name...'/>
                 <button onClick={onSearch}><img src={search} className="click" alt="findImg" /></button>
             </div>
-            <button><img src={add} alt="add" className="click"/> Add new profile</button>
+            <button onClick={() => navigate("/addUser")} ><img src={add} alt="add" className="click"/> Add new profile</button>
         </div>
     {data.length>0?
     <table className="mainTable" id="mainTable">
@@ -115,13 +116,13 @@ function MainTable({data}) {
             
          return (<tr key={i}>
                 <td>{item.name}</td>
-                <td>{item.lastName}</td>
+                <td>{item.lastname}</td>
                 <td>{item.email}</td>
                 <td>{item.passport}</td>
                 {item.level===1 && <td >Worker</td>}
                 {item.level===2 && <td >Junior</td>}
                 {item.level===3 && <td>Admin</td>}
-                <td>{item.startDate}</td>
+                <td>{item.createdAt}</td>
                 <td className="skillsColumns"><div>{
                      item.skills.split(",").map(
                         element => <span>{element}</span>

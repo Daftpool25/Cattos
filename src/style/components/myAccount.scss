@@ -1,0 +1,115 @@
+@import "../colors.scss";
+@import "../mixins.scss";
+@import "../fonts.scss";
+
+//!MY ACCOUNT
+
+#myAccount{
+    @include regularContainer (row, center, center);
+    margin: 2em 2em;
+    gap: 2em;
+
+    .tittle{
+        @include regular (2em);
+        color:$textColor
+    }
+    span{
+        @include light (2em);
+        color:$textColor
+    }
+
+    .personalDataContainer{
+        border-radius: 3em;
+        border: 5px solid $primary;
+        padding: 5em;
+        margin: 1em;
+        width: 50%;
+        box-sizing: border-box;
+        text-align: center;
+
+        #profilePhoto{
+            width: 80%;
+            height: auto;
+            border-radius: 5em;
+        }
+
+        div{
+            padding-top: 1.5em;
+        }
+        .btnContainer{
+            padding-top: 3em;
+            @include regularContainer(row,space-around,center);
+            #editBtn{
+                @include regularContainer(row,space-around,center);
+                @include btnModel($textColor, $light);
+                width: 45%;
+                    img{
+                        filter:invert(20%)
+                    }
+            }
+            #deleteBtn{
+                @include regularContainer(row,space-around,center);
+                @include btnModel(whitesmoke, $textColor);
+                width: 45%;
+                    img{
+                        filter:invert(100%) 
+                    }
+            }
+        }
+
+    }
+    .noPersonalContainer{
+        @include regularContainer (column, center, center);
+        width: 50%;
+        box-sizing: border-box;
+
+
+        .workerDataContainer{
+            text-align: center;
+            border-radius: 3em;
+            background-color: white;
+            padding: 5em;
+            margin: 1em;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+        .skillsDataContainer{
+            border-radius: 3em;
+            background-color: white;
+            padding: 5em;
+            margin: 1em;
+            width: 100%;
+            box-sizing: border-box;
+
+            #cvButton{
+                @include btnModel($textColor, $alternative);
+                @include bold (1.7em);
+                @include regularContainer (row, center, center);
+                gap: 0.5em;
+                margin-top: 1em;
+                width: 100%;
+                img{
+                    filter: invert(20%)
+                }
+            }
+
+            .badgesContainer{
+                @include regularContainer (row,space-around, center);
+                flex-wrap: wrap;
+                margin-top: 1em;
+                padding: 1em 0em;
+                .skillBadge{
+                    background-color: $light2;
+                    border-radius: 8px;
+                    color: $textColor;
+                    padding: 0.25em 0.5em;
+                    margin:0.15em 0em;
+                    @include regular(2em)
+                }
+            }
+        }
+    }
+}
