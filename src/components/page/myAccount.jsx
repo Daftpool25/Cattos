@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import profile from "../../images/profileExample.png";
 import edit from "../../images/edit.svg";
 import remove from "../../images/delete.svg";
 import cv from "../../images/cv.svg";
+import { userContext } from '../../app';
 
 
 
 function MyAccount() {
+
+  const  context = useContext(userContext)
+
   return (
     <div id='myAccount'>
       <div className='personalDataContainer'>
           <img id="profilePhoto" src={profile} alt="profile" />
           <div>
-              <div><span  className="tittle">Name: </span><span>Acacia</span></div>
+              <div><span  className="tittle">Name: </span><span>{context.user.name}</span></div>
               <div><span  className="tittle">LastName: </span><span>Fritz</span></div>
               <div><span  className="tittle">Email: </span><span>Acacia@gmail.com</span></div>
               <div><span  className="tittle">Passport: </span><span>34.567.890</span></div>
