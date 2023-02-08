@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function MainTable({data}) {
+function MainTable({data,onClickDelete,selectUser}) {
 
     const [searchValue, setSearchValue] = useState("")
     let columnState=-1;
@@ -115,7 +115,7 @@ function MainTable({data}) {
         {data.map( (item,i) => {
             
          return (<tr key={i}>
-                <td>{item.name}</td>
+                <td onClick={() => {navigate(`/user/${item.name}`); selectUser(item.id)}}>{item.name}</td>
                 <td>{item.lastname}</td>
                 <td>{item.email}</td>
                 <td>{item.passport}</td>
@@ -129,8 +129,12 @@ function MainTable({data}) {
                      )
                 }</div></td>
                 <td className="actionsIcons">
-                    <img  src={edit} alt="edit" />
-                    <img  src={remove} alt="delete" />
+                    <img onClick={() => {
+                        navigate(`/editUser/${item.name}`); 
+                        selectUser(item.id)}
+                    }  src={edit} alt="edit" 
+                    />
+                    <img onClick={() => onClickDelete(item.id)} src={remove} alt="delete" />
                 </td>
             </tr>)
             

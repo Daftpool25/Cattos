@@ -1,56 +1,97 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 
-function AddUserForm() {
+function AddUserForm({addUser}) {
+
+    //ver si ahorro codigo en un useState
+
+    const  name = useRef("")
+    const  lastname = useRef("")
+    const  email = useRef("")
+    const  password = useRef("")
+    const  passport = useRef("")
+    const  city = useRef("")
+    const  level = useRef("")
+    const  salary = useRef("")
+    const  skills = useRef("")
+    //const  photo = useRef("")
+    //const  cv = useRef("")
+
+    function sendAddUserForm(e){
+        e.preventDefault();
+
+        let nameValue=name.current.value
+        let lastnameValue=lastname.current.value
+        let emailValue=email.current.value
+        let passwordValue=password.current.value
+        let passportValue=passport.current.value
+        let cityValue=city.current.value
+        let levelValue=level.current.value
+        let salaryValue=salary.current.value
+        let skillsValue=skills.current.value
+
+        addUser(nameValue,
+            lastnameValue,
+            emailValue,
+            passwordValue,
+            passportValue,
+            cityValue,
+            levelValue,
+            salaryValue,
+            skillsValue
+        )
+    }
+
   return (
-    <div className="profileContainer">
-        <div className="inputsList">
+    <form onSubmit={sendAddUserForm} className="profileContainer">
+        <div  className="inputsList">
 
             <h1>New Profile</h1>
 
             <div className="labelXinput">
                 <label >Name:</label>
-                <input type="text" placeholder='Name' />
+                <input ref={name} type="text" placeholder='Name' />
             </div>
 
             <div className="labelXinput">
                 <label> LastName:</label>
-                <input type="text" placeholder='LastName' />
+                <input ref={lastname} type="text" placeholder='LastName' />
             </div>
 
             <div className="labelXinput">
             <label>Email:</label>
-            <input type="text" placeholder='Example@email.com' />
+            <input ref={email} type="text" placeholder='Example@email.com' />
             </div>
 
             <div className="labelXinput">
             <label >Passport:</label>
-            <input type="text" placeholder='Passport' />
+            <input  ref={passport} type="text" placeholder='Passport' />
+            </div>
+
+            <div className="labelXinput">
+            <label >Password:</label>
+            <input  ref={password} type="text" placeholder='Password' />
             </div>
 
             <div className="labelXinput">
             <label >City:</label>
-            <input type="text" placeholder='City' />
+            <input ref={city} type="text" placeholder='City' />
             </div>
 
-            <div className="labelXinput">
-            <label >Status:</label>
-            <input type="text" placeholder='Status' />
-            </div>
 
             <div className="labelXinput">
             <label >Level:</label>
-            <input type="text" placeholder='Level' />
+            <input ref={level} type="text" placeholder='Level' />
             </div>
 
             <div className="labelXinput">
             <label >Salary:</label>
-            <input type="text" placeholder='Salary' />
+            <input ref={salary} type="text" placeholder='Salary' />
             </div>
 
             <div className="labelXinput">
             <label >Skills:</label>
-            <input type="text" placeholder='Skills' />
+            <input ref={skills} type="text" placeholder='Skills' />
             </div>
 
             <h1>Upload Files:</h1>
@@ -70,7 +111,7 @@ function AddUserForm() {
             <button className="dismissButton">Comeback</button>
             <button className="successButton">Create</button>
         </div>
-    </div>
+    </form>
   )
 }
 

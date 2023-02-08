@@ -1,9 +1,11 @@
 import React, { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Login({login}) {
 
   const email = useRef("")
   const password =useRef("")
+  const navigate= useNavigate()
 
   return (
     <div className='login'>
@@ -21,7 +23,7 @@ function Login({login}) {
               <input ref={email} placeholder='your-email@example.com' type="email" />
               <input ref ={password} placeholder='Password' type="password" />
               <button type='submit'>Login</button>
-              <p>or register...</p>
+              <p onClick={() => navigate("/register")}>or register...</p>
             </form>
           </div>
       </div>

@@ -10,3 +10,4 @@ export async function userAccount(data,method) {
     }).
     catch(error => console.log(error))
 }
+

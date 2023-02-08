@@ -3,11 +3,11 @@ import MainTable from '../pure/mainTable'
 import TableFilter from '../pure/tableFilter'
 
 
-function TableContainer({data}) {
+function TableContainer({data,onClickDelete,selectUser}) {
   return (
     <div id='tableContainer'>
 
-        <MainTable data={data} />
+        <MainTable data={data} onClickDelete={onClickDelete} selectUser={selectUser} />
         <TableFilter/>
     </div>
   )

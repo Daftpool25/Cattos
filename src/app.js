@@ -11,26 +11,55 @@ import  "./style/style.scss"
 import message from "./images/message.svg"
 import notification from "./images/notification.svg"
 import account from "./images/account.svg"
-import { getTableData } from './controllers/list.controller';
+import { addUser, deleteUser, getTableData } from './controllers/list.controller';
 import AddUserForm from './components/pure/addUserForm';
+import EditUserForm from './components/pure/editUserForm';
 import { types } from './utils/actions';
 import { userAccount } from './controllers/user.controller';
 
-//TODO manejar el crud de la tabla, abrir usuarios
 //TODO subir imagenes y paginacion
-//TODO Filtro derecho y registro de usuarios(localstorage)
+//TODO Filtro derecho y (localstorage)
 //TODO menu derecho
-//TODO controleers utils models
 //todo pagina generall charts, personal charts
 //TODO STATE Controller
+
 
 export const userContext =React.createContext(null)
 
 function App() {
 
+  //! STATES
+  const [row,setRow] = useState("")
   const [tableData, setTableData] = useState([])
+  useEffect(() => {
+    getTableData().then( item => setTableData(item))
+  }, [])
+
   const initialState= {user:"",token:"",auth:false}
 
+  //!DATATABLE HANDLER
+  async function addUserToTable(name,lastname,email,password,passport,city,level,salary,skills) {
+    let object ={name,lastname,email,password,passport,city,level,salary,skills}
+    await addUser(object)
+    await getTableData().then( item => setTableData(item))
+  }
+
+  function selectUser(id) {
+    const user = tableData.find(item => item.id===id)
+    setRow(user)
+  }
+
+  function requesToEdit(){
+
+  }
+
+  async function onClickDelete(id) {
+    await deleteUser(id)
+    await getTableData().then( item => setTableData(item))
+
+  }
+
+  //!DISPATCH FUNCTIONS
   function setUserData(data){
     dispatch({
       type:types.SET_USER_DATA,
@@ -41,19 +70,32 @@ function App() {
     })
   }
 
+  function login(email,password){
+     dispatch({
+      type:types.LOGIN,
+      payload:{
+          email,
+          password
+      }
+    })
+}
+
+  //!REDUCER
+
   const reducer = (state,action) =>{
+    const { name,lastname,email,password,passport,city,level,salary,skills,photo,cv}=action.payload
 
     switch (action.type) {
       case types.LOGIN:
-
-        const {email,password}=action.payload
-        let dataFromForm={email,password}
+        let dataFromLoginForm={email,password}
         
-        userAccount(dataFromForm, "login").then( data => setUserData(data.message))
+        userAccount(dataFromLoginForm, "login").then( data => setUserData(data.message))
         return {...state};
 
       case types.REGISTER:
-        
+        let dataFromRegisterForm={name,lastname,email,password,passport,city,level,salary,skills,photo,cv}
+
+        userAccount(dataFromRegisterForm,"register").then(data => setUserData(data.message))       
         return {...state};
 
       case types.SET_USER_DATA:
@@ -66,11 +108,8 @@ function App() {
     }
   }
 
+  //!USE REDUCER
   const [state, dispatch] = useReducer(reducer, initialState)
-
-  useEffect(() => {
-    getTableData().then( item => setTableData(item))
-  }, [])
 
   
 
@@ -97,25 +136,49 @@ function App() {
                   </aside>
                   <main>
                     <Routes>
-                        <Route exact path='/' element={<Home data={tableData} />}/>
-                        <Route path='/login' element={<Login 
-                          login={
-                              (email,password) => dispatch({
-                                type:types.LOGIN,
-                                payload:{
+                        <Route exact path='/' element={state.auth? <Home data={tableData} onClickDelete={onClickDelete} selectUser={selectUser}/>:<Login login={login}/>}/>
+                        <Route path='/login' element={<Login login={login}/>}/>
+                        <Route path='/register' element={
+                            <Register
+                                registerUser={(
+                                    name,
+                                    lastname,
                                     email,
-                                    password
-                                }
-                              })
-                          }/>
+                                    password,
+                                    passport,
+                                    city,
+                                    level,
+                                    salary,
+                                    skills,
+                                    photo,
+                                    cv
+                                ) =>{
+                                  dispatch({
+                                    type:types.REGISTER,
+                                    payload:{
+                                      name,
+                                      lastname,
+                                      email,
+                                      password,
+                                      passport,
+                                      city,
+                                      level,
+                                      salary,
+                                      skills,
+                                      photo,
+                                      cv
+                                    }
+                                  })
+                                }}
+                            />
                         }/>
-                        <Route path='/register' element={<Register/>}/>
-                        <Route path='/my-account' element={<MyAccount/>}/>
-                        <Route path='/user/:name' element={<Profile/>}/>
 
-                        <Route path='/addUser' element={<AddUserForm/>}/>
+                        <Route path='/my-account' element={state.auth? <MyAccount/>:<Login login={login}/> }/>
 
-                        <Route exact path='/user' element={<Home data={tableData} />}/>
+                        <Route path='/user/:name' element={state.auth? <Profile user={row}/>:<Login login={login}/> }/>
+                        <Route path='/addUser' element={state.auth? <AddUserForm addUser={addUserToTable}/>:<Login login={login}/>}/>
+                        <Route path='/editUser/:name' element={state.auth? <EditUserForm userToEdiT={row}/> :<Login login={login}/>}/>
+                   
                     </Routes>
                   </main>
             </div>

@@ -1,15 +1,21 @@
 import React from 'react'
+import profile from "../../images/profileExample.png";
+import edit from "../../images/edit.svg";
+import remove from "../../images/delete.svg";
+import cv from "../../images/cv.svg";
 
-function Profile() {
+//TODO edit and delte buttons, imag and cv
+
+function Profile({user}) {
   return (
     <div id='myAccount'>
       <div className='personalDataContainer'>
           <img id="profilePhoto" src={profile} alt="profile" />
           <div>
-              <div><span  className="tittle">Name: </span><span>Acacia</span></div>
-              <div><span  className="tittle">LastName: </span><span>Fritz</span></div>
-              <div><span  className="tittle">Email: </span><span>Acacia@gmail.com</span></div>
-              <div><span  className="tittle">Passport: </span><span>34.567.890</span></div>
+              <div><span  className="tittle">Name: </span><span>{user.name}</span></div>
+              <div><span  className="tittle">LastName: </span><span>{user.lastname}</span></div>
+              <div><span  className="tittle">Email: </span><span>{user.email}</span></div>
+              <div><span  className="tittle">Passport: </span><span>{user.passport}</span></div>
           </div>
           <div className="btnContainer">
             <button id='editBtn'><img src={edit} alt="edit" /> Edit</button>
@@ -18,16 +24,18 @@ function Profile() {
       </div>
      <div className="noPersonalContainer">
         <div className="workerDataContainer">
-              <div><span className="tittle">City: </span><span>Montreal</span></div>
-              <div><span className="tittle">Status: </span><span>Connected</span></div>
-              <div><span className="tittle">Level: </span><span>President</span></div>
-              <div><span className="tittle">Salary: </span><span>30.000$</span></div>
+              <div><span className="tittle">City: </span><span>{user.city}</span></div>
+              <div><span className="tittle">Status: </span><span>{user.status? "active":"disconnected"}</span></div>
+              <div><span className="tittle">Level: </span>{user.level===1 && <span>Worker</span>}{user.level===2 && <span>Junior</span>}{user.level===3 && <span>Admin</span>}</div>
+              <div><span className="tittle">Salary: </span><span>{user.salary}$</span></div>
           </div>
           <div className="skillsDataContainer">
-              <div><span className="tittle">Start Date: </span><span>04/05/1997</span></div>
+              <div><span className="tittle">Start Date: </span><span>{user.createdAt}</span></div>
               <button id='cvButton'><img src={cv} alt="cv" /> Curriculum</button>
               <div className='badgesContainer'>
-                  <span className="skillBadge">Spanish</span><span className="skillBadge">English</span><span className="skillBadge">Data Science</span><span className="skillBadge">BigData</span><span className="skillBadge">Design</span>
+                    {user.skills.split(",").map(
+                            element => <span className="skillBadge">{element}</span>
+                    )}
               </div>
           </div>
      </div>

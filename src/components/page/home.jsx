@@ -3,11 +3,11 @@ import TableContainer from '../container/tableContainer'
 import Footer from '../pure/footer'
 
 
-function Home({data}) {
+function Home({data, selectUser, onClickDelete}) {
 
   return (
     <div id="homeContainer">
-        <TableContainer data={data} />
+        <TableContainer data={data} onClickDelete={onClickDelete} selectUser={selectUser}/>
         <Footer/>
     </div>
   )
