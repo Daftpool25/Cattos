@@ -1,0 +1,16 @@
+@import "../colors.scss";
+@import "../mixins.scss";
+@import "../fonts.scss";
+
+.chartsContainer{
+    @include regularContainer (column, center, center);
+    
+    .chartsInRowsContainer{
+        @include regularContainer (row, space-around, center);
+        flex-wrap: wrap
+    }
+}
+
+.percentsChartContainer{
+    @include regularContainer (column, center, center);
+}

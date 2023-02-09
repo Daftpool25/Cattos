@@ -16,6 +16,8 @@ import AddUserForm from './components/pure/addUserForm';
 import EditUserForm from './components/pure/editUserForm';
 import { types } from './utils/actions';
 import { userAccount } from './controllers/user.controller';
+import GeneralGraphs from './components/page/generalGraphs';
+import UserGraphs from './components/page/userGraphs';
 
 //TODO subir imagenes y paginacion
 //TODO Filtro derecho y (localstorage)
@@ -50,7 +52,7 @@ function App() {
   }
 
   function requesToEdit(){
-
+    
   }
 
   async function onClickDelete(id) {
@@ -179,6 +181,9 @@ function App() {
                         <Route path='/addUser' element={state.auth? <AddUserForm addUser={addUserToTable}/>:<Login login={login}/>}/>
                         <Route path='/editUser/:name' element={state.auth? <EditUserForm userToEdiT={row}/> :<Login login={login}/>}/>
                    
+                        <Route exact path='/graphs' element={<GeneralGraphs/>}/>
+                        <Route path='/graphs/:name' element={state.auth? <UserGraphs /> :<Login login={login}/>}/>
+ 
                     </Routes>
                   </main>
             </div>

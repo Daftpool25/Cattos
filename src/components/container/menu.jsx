@@ -15,9 +15,9 @@ function Menu() {
     <div id="sideBarContainer">
         <div className="iconsContainerBar">
             <img onClick={() => navigate("/")} width="48px" src={dashboard} alt="dashboardMenuIcon" />
-            <img width="48px" src={table} alt="tableMenuIcon" />
-            <img width="48px" src={git} alt="gitMenuIcon" />
-            <img width="48px" src={linkedin} alt="linkMenuIcon" />
+            <img onClick={() => navigate("/graphs")} width="48px" src={table} alt="tableMenuIcon" />
+            <img onClick={() => navigate("/")} width="48px" src={git} alt="gitMenuIcon" />
+            <img onClick={() => navigate("/")} width="48px" src={linkedin} alt="linkMenuIcon" />
             <hr width="80%" color='white'/>
             <img src={arrow} alt="displayMenuIcon" />
 
